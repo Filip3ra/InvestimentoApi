@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "8ZOq6dnkVnwRQPy+yhKq40O46kIC6KqolzRCYbpAftY=",
+  "Source": "InvestimentoApi",
+  "BasePath": "_content/InvestimentoApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "InvestimentoApi\\wwwroot",
+      "Source": "InvestimentoApi",
+      "ContentRoot": "C:\\Users\\filip\\OneDrive\\Documentos\\DOTNET\\0A100K\\InvestimentoApi\\wwwroot\\",
+      "BasePath": "_content/InvestimentoApi",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\filip\\OneDrive\\Documentos\\DOTNET\\0A100K\\InvestimentoApi\\wwwroot\\index.html",
+      "SourceId": "InvestimentoApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\filip\\OneDrive\\Documentos\\DOTNET\\0A100K\\InvestimentoApi\\wwwroot\\",
+      "BasePath": "_content/InvestimentoApi",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
+}
