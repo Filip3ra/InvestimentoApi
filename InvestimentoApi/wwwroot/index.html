@@ -6,65 +6,65 @@
     <title>Calculadora de Investimento</title>
   </head>
   <body>
-    <h2>Calculadora de Tempo para R$ 100.000</h2>
+    <h2>Calculadora de Tempo para Objetivo Financeiro</h2>
+
+    <label for="patrimonio">Patrimônio inicial (R$):</label>
+    <input type="number" id="patrimonio" required />
+    <br />
 
     <label for="valorMensal">Valor investido mensalmente (R$):</label>
     <input type="number" id="valorMensal" required />
     <br />
 
-    <label for="taxa">Taxa de investimento (%):</label>
-    <input type="number" id="taxa" required />
+    <label for="percentualCDI">Investimento (% do CDI):</label>
+    <input type="number" id="percentualCDI" required />
+    <br />
 
-    <select id="periodicidade">
-      <option value="anual">Anual</option>
-      <option value="mensal">Mensal</option>
-      <option value="trimestral">Trimestral</option>
-      <option value="semestral">Semestral</option>
-    </select>
+    <label for="taxaAnual">Investimento anual (% de rendimento):</label>
+    <input type="number" id="taxaAnual" required />
     <br />
 
     <label for="inflacaoAnual">Taxa de inflação anual (%):</label>
     <input type="number" id="inflacaoAnual" required />
     <br />
 
+    <label for="valorObjetivo">Valor objetivo (R$):</label>
+    <input type="number" id="valorObjetivo" required />
+    <br />
+
     <button onclick="CalcularInvestimento()">Calcular</button>
     <p id="resultado"></p>
 
-    <!--
-    document.getElementById("valorMensal"): Obtém o elemento HTML com o id="valorMensal"
-    .value: Pega o valor digitado pelo usuário
-
-
-    
-    -->
-
     <script>
       async function CalcularInvestimento() {
+        let patrimonio = document.getElementById("patrimonio").value;
         let valorMensal = document.getElementById("valorMensal").value;
-        let taxa = document.getElementById("taxa").value;
-        let periodicidade = document.getElementById("periodicidade").value;
+        let percentualCDI = document.getElementById("percentualCDI").value;
+        let taxaAnual = document.getElementById("taxaAnual").value;
         let inflacaoAnual = document.getElementById("inflacaoAnual").value;
+        let valorObjetivo = document.getElementById("valorObjetivo").value;
 
-        // Validação dos campos: vazio, null, undefined
-        if (!valorMensal || !taxa || !periodicidade || !inflacaoAnual) {
+        if (
+          !patrimonio ||
+          !valorMensal ||
+          !percentualCDI ||
+          !taxaAnual ||
+          !inflacaoAnual ||
+          !valorObjetivo
+        ) {
           document.getElementById("resultado").innerText =
             "Preencha todos os campos.";
           return;
         }
 
-        //url: é uma string contendo o endereço da API com os valores inseridos pelo usuário usada para fazer requisição GET
-        let url = `http://localhost:5179/api/investimento/calcular?valorMensal=${valorMensal}&taxa=${taxa}&periodicidade=${periodicidade}&inflacaoAnual=${inflacaoAnual}`;
+        let url = `http://localhost:5179/api/investimento/calcular?patrimonio=${patrimonio}&valorMensal=${valorMensal}&percentualCDI=${percentualCDI}&taxaAnual=${taxaAnual}&inflacaoAnual=${inflacaoAnual}&valorObjetivo=${valorObjetivo}`;
 
         try {
-          /*
-          fetch: requisição http, nesse caso o GET
-          await: como pode demorar a requisição, vamos esperar a resposta
-          */
           let response = await fetch(url);
-          let data = await response.json(); // converte resposta da api (.json) para objeto JS (data)
+          let data = await response.json();
           document.getElementById(
             "resultado"
-          ).innerText = `Você atingirá R$ 100.000 em aproximadamente ${data.anos} anos e ${data.meses} meses.`;
+          ).innerText = `Você atingirá R$ ${valorObjetivo} em aproximadamente ${data.anos} anos e ${data.meses} meses.`;
         } catch (error) {
           console.error("Erro na requisição:", error);
           alert("Erro ao calcular. Verifique os valores e tente novamente.");

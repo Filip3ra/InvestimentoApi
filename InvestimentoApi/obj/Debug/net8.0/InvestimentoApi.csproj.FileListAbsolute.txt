@@ -32,3 +32,4 @@ C:\Users\filip\OneDrive\Documentos\DOTNET\0A100K\InvestimentoApi\obj\Debug\net8.
 C:\Users\filip\OneDrive\Documentos\DOTNET\0A100K\InvestimentoApi\obj\Debug\net8.0\InvestimentoApi.pdb
 C:\Users\filip\OneDrive\Documentos\DOTNET\0A100K\InvestimentoApi\obj\Debug\net8.0\InvestimentoApi.genruntimeconfig.cache
 C:\Users\filip\OneDrive\Documentos\DOTNET\0A100K\InvestimentoApi\obj\Debug\net8.0\ref\InvestimentoApi.dll
+C:\Users\filip\OneDrive\Documentos\DOTNET\0A100K\InvestimentoApi\obj\Debug\net8.0\InvestimentoApi.sourcelink.json

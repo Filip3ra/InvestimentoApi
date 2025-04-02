@@ -2,36 +2,33 @@ namespace InvestimentoApi.Services;
 
 public static class ServicoInvestimento
 {
+    private const double CDI = 14.15; // Taxa CDI atual (%)
 
-  public static double ConverterTaxaParaMensal(double taxa, string peridiocidade)
-  {
-    switch (peridiocidade.ToLower())
+    public static int CalcularTempo(
+        double patrimonio, double valorMensal, 
+        double percentualCDI, double taxaAnual,
+        double inflacaoAnual, double valorObjetivo)
     {
-      case "anual":
-        return Math.Pow(1 + (taxa / 100), 1.0 / 12) - 1;
-      case "trimestral":
-        return Math.Pow(1 + (taxa / 100), 1.0 / 3) - 1;
-      case "semestral":
-        return Math.Pow(1 + (taxa / 100), 1.0 / 6) - 1;
-      case "mensal":
-        return taxa / 100;
-      default:
-        throw new ArgumentException("Peridiocidade inválida.");
-    }
-  }
+        double saldo = patrimonio;
+        double taxaMensal = Math.Pow(1 + (percentualCDI / 100) * (CDI / 100), 1.0 / 12) - 1;
+        double inflacaoMensal = Math.Pow(1 + (inflacaoAnual / 100), 1.0 / 12) - 1;
+        int meses = 0;
 
-  public static int CalcularTempo(double valorMensal, double taxaMensal, double inflacaoAnual)
-  {
+        while (saldo < valorObjetivo)
+        {
+            // Acumulando investimento mensal ao longo do ano
+            double investimentosAnuais = 0;
+            for (int i = 0; i < 12; i++)
+            {// acho que ta errado também
+                investimentosAnuais = (investimentosAnuais + valorMensal) * (1 + taxaMensal - inflacaoMensal);
+            }
 
-    double saldo = 0;
-    double inflacaoMensal = Math.Pow(1 + (inflacaoAnual / 100), 1.0 / 12) - 1;
-    int meses = 0;
-    while (saldo < 100000)
-    {
-      saldo = (saldo + valorMensal) * (1 + taxaMensal - inflacaoMensal);
-      meses++;
+            // Crescimento do patrimônio inicial no final do ano
+            saldo = (saldo * (1 + taxaAnual / 100) / (1 + inflacaoAnual / 100)) + investimentosAnuais;
+            meses += 12;
+            Console.WriteLine($"Ano {meses / 12}: Saldo acumulado = R$ {saldo:F2}");
+        }
+
+        return meses;
     }
-    return meses;        
-  }
 }
-
