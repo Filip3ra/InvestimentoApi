@@ -6,7 +6,7 @@
     <title>Calculadora de Investimento</title>
   </head>
   <body>
-    <h2>Calculadora de Tempo para Objetivo Financeiro</h2>
+    <h2>De 0 aos 100K</h2>
 
     <label for="patrimonio">Patrimônio inicial (R$):</label>
     <input type="number" id="patrimonio" required />
@@ -17,11 +17,11 @@
     <br />
 
     <label for="percentualCDI">Investimento (% do CDI):</label>
-    <input type="number" id="percentualCDI" required />
+    <input type="number" id="percentualCDI" value="100" required />
     <br />
 
     <label for="taxaAnual">Investimento anual (% de rendimento):</label>
-    <input type="number" id="taxaAnual" required />
+    <input type="number" id="taxaAnual" value="10" required />
     <br />
 
     <label for="inflacaoAnual">Taxa de inflação anual (%):</label>
@@ -29,11 +29,12 @@
     <br />
 
     <label for="valorObjetivo">Valor objetivo (R$):</label>
-    <input type="number" id="valorObjetivo" required />
+    <input type="number" id="valorObjetivo" value="100000" required />
     <br />
 
     <button onclick="CalcularInvestimento()">Calcular</button>
     <p id="resultado"></p>
+    <ul id="detalhes"></ul>
 
     <script>
       async function CalcularInvestimento() {
@@ -62,9 +63,21 @@
         try {
           let response = await fetch(url);
           let data = await response.json();
+
           document.getElementById(
             "resultado"
-          ).innerText = `Você atingirá R$ ${valorObjetivo} em aproximadamente ${data.anos} anos e ${data.meses} meses.`;
+          ).innerText = `Você atingirá R$ ${valorObjetivo} em aproximadamente ${data.anos} anos.`;
+
+          // Limpa a lista antes de adicionar novos itens
+          let detalhesLista = document.getElementById("detalhes");
+          detalhesLista.innerHTML = "";
+
+          // Percorre a listaAnual e adiciona ao HTML
+          data.listaAnual.forEach((ano) => {
+            let li = document.createElement("li");
+            li.textContent = ano;
+            detalhesLista.appendChild(li);
+          });
         } catch (error) {
           console.error("Erro na requisição:", error);
           alert("Erro ao calcular. Verifique os valores e tente novamente.");
