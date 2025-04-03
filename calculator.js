@@ -2,6 +2,7 @@ const CDI = 14.15,
   calculatorForm = document.getElementById("calculator_form"),
   resultDesc = document.getElementById("result_desc"),
   result = document.getElementById("result"),
+  messageErro = document.getElementById("mensagemErro"),
   detalhesLista = document.getElementById("detalhes");
 
 function calcularInvestimento(
@@ -41,19 +42,38 @@ function calcularInvestimento(
 }
 
 function calcular() {
-  let patrimonio = parseFloat(document.getElementById("patrimonio").value);
-  let valorMensal = parseFloat(document.getElementById("valorMensal").value);
-  let percentualCDI = parseFloat(
-    document.getElementById("percentualCDI").value
-  );
-  let taxaAnual = parseFloat(document.getElementById("taxaAnual").value);
-  let inflacaoAnual = parseFloat(
-    document.getElementById("inflacaoAnual").value
-  );
-  let valorObjetivo = parseFloat(
-    document.getElementById("valorObjetivo").value
-  );
+  let patrimonio = document.getElementById("patrimonio").value.trim();
+  let valorMensal = document.getElementById("valorMensal").value.trim();
+  let percentualCDI = document.getElementById("percentualCDI").value.trim();
+  let taxaAnual = document.getElementById("taxaAnual").value.trim();
+  let inflacaoAnual = document.getElementById("inflacaoAnual").value.trim();
+  let valorObjetivo = document.getElementById("valorObjetivo").value.trim();
+  let messageErro = document.getElementById("messageErro");
 
+  if (
+    // Verifica espaços vazios
+    patrimonio === "" ||
+    valorMensal === "" ||
+    percentualCDI === "" ||
+    taxaAnual === "" ||
+    inflacaoAnual === "" ||
+    valorObjetivo === ""
+  ) {
+    messageErro.innerText = "Preencha todos os campos corretamente.";
+    messageErro.classList.remove("hidden");
+    return;
+  }
+
+  messageErro.classList.add("hidden");
+
+  patrimonio = parseFloat(patrimonio);
+  valorMensal = parseFloat(valorMensal);
+  percentualCDI = parseFloat(percentualCDI);
+  taxaAnual = parseFloat(taxaAnual);
+  inflacaoAnual = parseFloat(inflacaoAnual);
+  valorObjetivo = parseFloat(valorObjetivo);
+
+  // Verifica valores inválidos
   if (
     isNaN(patrimonio) ||
     isNaN(valorMensal) ||
@@ -62,8 +82,8 @@ function calcular() {
     isNaN(inflacaoAnual) ||
     isNaN(valorObjetivo)
   ) {
-    document.getElementById("resultado").innerText =
-      "Preencha todos os campos corretamente.";
+    messageErro.innerText = "Preencha todos os campos com valores válidos.";
+    messageErro.classList.remove("hidden");
     return;
   }
 

@@ -14,8 +14,16 @@
     <meta property="og:title" content="0 aos 100K!" />
     <meta
       property="og:description"
-      content="Descubra em quantos anos necessários para atingir R$100.000!" />
+      content="Descubra em quantos anos são necessários para atingir R$100.000!" />
+    <!--
+    <meta property="og:image" content="assets/capa.png" />
+    <meta
+      property="og:url"
+      content="https://www.linkedin.com/in/filipi-maciel-891300132/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    -->
   </head>
+
   <body>
     <!-- div que centraliza, justifica, ?? -->
     <div
@@ -23,6 +31,7 @@
       <form
         id="calculator_form"
         class="flex flex-col items-center px-8 py-10 max-w-xl w-full shadow-md border rounded-xl bg-white">
+        <img src="assets/logo.svg" class="h-16 mx-auto" />
         <h1 class="text-2xl font-bold text-gray-800">
           Calculadora de Investimentos
         </h1>
@@ -30,33 +39,30 @@
           <!--texto cinza descrição-->
           Seu patrimônio será sempre investido em uma aplicação com taxa anual,
           e durante o ano você investe mensalvemente um valor. Ao final do ano,
-          seu patrimônio soma com seus investimentos mensais mais o retorno da
-          aplicação anual. Esse ciclo se repete todo ano até atingir seu valor
+          seu patrimônio soma com seus investimentos mensais mais os retornos
+          das aplicações. Esse ciclo se repete todo ano até atingir seu valor
           objetivo.
         </p>
         <div class="mt-6 flex flex-col gap-4 w-full">
           <!--Patrimônio inicial-->
           <div
             class="border px-4 rounded-md flex items-center gap-2 text-gray-600">
-            <span class="material-symbols-outlined">
-              account_balance_wallet
-            </span>
+            <span class="material-symbols-outlined"> savings </span>
             <input
               type="number"
               placeholder="Patrimônio inicial (R$)"
               class="flex-1 py-3 outline-none"
-              value="20000"
               id="patrimonio" />
           </div>
 
           <!--Investimento mensal -->
           <div
             class="border px-4 rounded-md flex items-center gap-2 text-gray-600">
+            <span class="material-symbols-outlined"> payments </span>
             <input
               type="number"
               placeholder="Investimento mensal (R$)"
               class="flex-1 py-3 outline-none"
-              value="1000"
               id="valorMensal" />
           </div>
 
@@ -104,35 +110,6 @@
               id="valorObjetivo" />
           </div>
         </div>
-        <!--
-        <label for="patrimonio">Patrimônio inicial (R$):</label>
-        <input type="number" id="patrimonio" required />
-        <br />-->
-
-        <!--
-        <label for="valorMensal">Valor investido mensalmente (R$):</label>
-        <input type="number" id="valorMensal" required />
-        <br />-->
-
-        <!--
-        <label for="percentualCDI">Investimento (% do CDI):</label>
-        <input type="number" id="percentualCDI" value="100" required />
-        <br /> -->
-
-        <!--
-        <label for="taxaAnual">Investimento anual (% de rendimento):</label>
-        <input type="number" id="taxaAnual" value="10" required />
-        <br /> -->
-
-        <!--
-        <label for="inflacaoAnual">Taxa de inflação anual (%):</label>
-        <input type="number" id="inflacaoAnual" required />
-        <br /> -->
-
-        <!--
-        <label for="valorObjetivo">Valor objetivo (R$):</label>
-        <input type="number" id="valorObjetivo" value="100000" required />
-        <br /> -->
 
         <button
           class="bg-black text-white px-8 py-3 rounded-full mt-6 text-base font-medium hover:bg-gray-700 transition flex items-center gap-2"
@@ -142,7 +119,6 @@
           Calcular
         </button>
 
-        <!---->
         <div
           class="w-full px-8 py-6 mt-8 bg-gray-100 rounded-md text-center border hidden"
           id="result">
@@ -151,7 +127,7 @@
             <div class="text-center flex-1">
               <span
                 class="material-symbols-outlined text-3xl text-green-500 mb-2">
-                currency_exchange
+                paid
               </span>
             </div>
           </div>
@@ -165,11 +141,19 @@
             id="detalhes"></p>
         </div>
 
-        <!-- <p id="resultado"></p> -->
+        <p id="messageErro" class="hidden text-red-500 mt-2"></p>
         <!-- <ul id="detalhes"></ul> -->
       </form>
+      <div class="text-center text-gray-500 text-sm md:mt-6">
+        Calculadora feita com ☕️ por
+        <a
+          href="https://www.linkedin.com/in/filipi-maciel-891300132/"
+          target="_blank"
+          class="text-[#c41067]"
+          >Filipi Maciel</a
+        >
+      </div>
     </div>
-
     <script src="calculator.js"></script>
   </body>
 </html>
