@@ -11,6 +11,5 @@ Ao final do ano esse patrimônio será somado com seu investimento mensal, se to
 Sim, a inflação está sendo considerada e você pode ajustar ela, mas a média nos últimos vinte e tantos anos ficou em torno de 5%, 
 deixei alguns valores sugeridos automaticamente.
 
-Tentei simular dentro do possível, esses índices variam bastante, se quiserem testar segue o link.
+Tentei simular dentro do possível, esses índices variam bastante, mas segue o link para teste [aqui](https://investimento-api.vercel.app/).
 
-link: https://lnkd.in/dRd2XFH8
